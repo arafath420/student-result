@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Result</title>
+    <!----------- Favicon --------->
+    <link
+      rel="shortcut icon"
+      href="https://cdn-icons-png.flaticon.com/512/8233/8233800.png"
+      type="image/x-icon"
+    />
+    <!--------- Google Fonts --------->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!---------- Font Awesome version 5.15.4 --------->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-----------Bootstrap---------->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!----------- My CSS ----------->
+    <link rel="stylesheet" href="./Asset/CSS/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-10 mx-auto">
+          <!------- Create Student Button ------->
+          <button
+            class="btn btn-primary mt-5 mb-3"
+            data-bs-toggle="modal"
+            data-bs-target="#creatStudentModal"
+          >
+            Creat Student
+          </button>
+          <a href="./index.html" class="btn btn-info mt-5 mb-3">Find Result</a>
+          <!------- Student List Table ------->
+          <div class="card border-0 shadow">
+            <div class="card-body">
+              <table class="table table-striped table-bordered">
+                <thead class="table-success">
+                  <tr>
+                    <th>#</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Roll</th>
+                    <th>Reg No</th>
+                    <th>Created At</th>
+                    <th>Result</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody class="student-list"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------- Create Student Modal ------->
+    <div class="modal fade" id="creatStudentModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header align-baseline">
+            <h4>Create A Student</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" id="createStudentForm">
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Name"
+                name="name"
+              />
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Photo"
+                name="photo"
+              />
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Roll No"
+                name="rollno"
+              />
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Reg No"
+                name="regno"
+              />
+              <div class="form-alert my-2"></div>
+              <button type="submit" class="btn btn-primary">Create</button>
+              <button type="reset" class="btn btn-warning">Reset</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------- Edit Student Modal ------->
+    <div class="modal fade" id="editStudentModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header align-baseline">
+            <h4>Edit Student Data</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" id="editStudentForm">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Name"
+                name="name"
+              />
+              <label for="photo">Photo</label>
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Photo"
+                name="photo"
+              />
+
+              <input type="hidden" class="form-control my-3" name="id" />
+              <img
+                class="rounded-3 img-thumbnail"
+                src="https://scontent.fdac22-1.fna.fbcdn.net/v/t39.30808-6/319981952_681248006840430_2290147124025767570_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeHvu62PXqci-PS4tQXkufma4KDGCQj-3CrgoMYJCP7cKr5tXx-ZctC3XNXRr_LEnG2q3cVkpTLkRnMQsZFAM7gf&_nc_ohc=k9KXH3AMB28AX83lDjg&_nc_ht=scontent.fdac22-1.fna&oh=00_AfDSwBAXWynOjDSDULeESujA_FU6RpinHcHD8bOpiyHx1w&oe=65272F69"
+                alt=""
+                id="prevPhoto"
+              />
+              <div class="edit-sudent-form-alert my-2"></div>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------- Add Result Modal ------->
+    <div class="modal fade" id="addResultModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header align-baseline">
+            <h4>Add Result</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" id="addResultForm">
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Bangla"
+                name="bangla"
+              />
+
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="English"
+                name="english"
+              />
+
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Math"
+                name="math"
+              />
+
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Science"
+                name="science"
+              />
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="SocialScience"
+                name="socialScience"
+              />
+              <input
+                type="text"
+                class="form-control my-3"
+                placeholder="Religion"
+                name="religion"
+              />
+              <input type="hidden" class="form-control my-3" name="id" />
+
+              <div class="add-result-form-alert my-2"></div>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------- Edit Mark Button ------->
+    <div class="modal fade" id="view-result">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header align-baseline">
+            <h4 class="text-center">Edit Result</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" id="editResultForm">
+              <label for="bangla" class="mt-3">Bangla</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Bangla"
+                name="bangla"
+              />
+              <label for="english" class="mt-3">English</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="English"
+                name="english"
+              />
+              <label for="math" class="mt-3">Math</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Math"
+                name="math"
+              />
+              <label for="science" class="mt-3">Science</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Science"
+                name="science"
+              />
+              <label for="socialScience" class="mt-3">Social Science</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="SocialScience"
+                name="socialScience"
+              />
+              <label for="religion" class="mt-3">Religion</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Religion"
+                name="religion"
+              />
+              <input type="hidden" class="form-control my-3" name="id" />
+
+              <div class="edit-sudent-form-alert my-2"></div>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------- Edit Mark Button ------->
+    <div class="modal fade" id="st-vieaw-modal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header align-baseline">
+            <h4>Student Info</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body st-vieaw-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./App/data.js"></script>
+    <script src="./App/function.js"></script>
+    <script src="./App/main.js"></script>
+  </body>
+</html>
